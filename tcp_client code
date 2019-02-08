@@ -1,0 +1,28 @@
+import socket #creating a socket for the client connection.
+import time
+
+def Main(): #defining 'Main'
+    host = '127.0.0.1' #Loopback address on host
+    port = 5000 #random port to connect to device over network.
+
+    s = socket.socket() #creating the socket object
+    s.connect((host,port)) #assigning the connect function with the host and port in the tuple)
+    time.sleep(3)
+    print
+    message = raw_input("Greetings you insignificant, puny human. Would you like to see the capabilities of my computing power? ") #raw_input fixed the issue! message will equal raw_input
+    while message != 'q': #creating a 'while' loop where condition is true as long as message does not equal 'q'
+        s.send(message) #socket will send message
+        data = s.recv(1024) #data received is the socket with the recv function equal to byte size. (1024)
+        print #creates an extra line
+        print("Processing your message...")
+        print
+        time.sleep(3)
+        print("BEHOLD, YOUR MESSAGE ALL CAPITALIZED!:   " + str(data)) #Returned data from server in a str format.
+        print #creates and extra line
+        message = raw_input("Enter another message and I shall amaze your little brain...") #asks another message to be returned
+        time.sleep(3)
+    else: #finalizing conditional
+        s.close() #close socket and connection.
+
+if __name__ == '__main__':
+    Main()
