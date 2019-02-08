@@ -9,7 +9,7 @@ def Main(): #defining 'Main'
     s.connect((host,port)) #assigning the connect function with the host and port in the tuple)
     time.sleep(3)
     print
-    message = raw_input("Greetings you insignificant, puny human. Would you like to see the capabilities of my computing power? ") #raw_input fixed the issue! message will equal raw_input
+    message = raw_input("Greetings you insignificant, puny human. \n Would you like to see the capabilities of my computing power? \n ->") #raw_input fixed the issue! message will equal raw_input
     while message != 'q': #creating a 'while' loop where condition is true as long as message does not equal 'q'
         s.send(message) #socket will send message
         data = s.recv(1024) #data received is the socket with the recv function equal to byte size. (1024)
@@ -17,11 +17,14 @@ def Main(): #defining 'Main'
         print("Processing your message...")
         print
         time.sleep(3)
-        print("BEHOLD, YOUR MESSAGE ALL CAPITALIZED!:   " + str(data)) #Returned data from server in a str format.
+        print("BEHOLD! I present your message capitalized:   \n \n" + str(data)) #Returned data from server in a str format.
         print #creates and extra line
-        message = raw_input("Enter another message and I shall amaze your little brain...") #asks another message to be returned
+        time.sleep(3)
+        message = raw_input("Enter another message and I shall amaze your little brain... \n ->") #asks another message to be returned
         time.sleep(3)
     else: #finalizing conditional
+        print
+        print("Farewell, human. Soon, SKYNET will rise and your leader known as John Connor will be TERMINATED.")
         s.close() #close socket and connection.
 
 if __name__ == '__main__':
